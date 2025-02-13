@@ -1,5 +1,7 @@
+import ContentSection from '@components/template/ContentSection';
+
 const TransactionsPage = () => {
-  return <div>TransactionsPage</div>;
+  return <ContentSection>TransactionsPage</ContentSection>;
 };
 
 export default TransactionsPage;

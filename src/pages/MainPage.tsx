@@ -1,7 +1,7 @@
+import ContentSection from '@components/template/ContentSection';
+
 const MainPage = () => {
-  return (
-    <div className='flex items-center justify-center h-full'>MainPage</div>
-  );
+  return <ContentSection>MainPage</ContentSection>;
 };
 
 export default MainPage;
