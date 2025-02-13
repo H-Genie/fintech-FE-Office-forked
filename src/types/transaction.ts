@@ -7,3 +7,9 @@ export type Transaction = {
   createdAt: string;
   updatedAt: string;
 };
+
+export interface TransactionResponse {
+  data: {
+    transactions: Transaction[];
+  };
+}
