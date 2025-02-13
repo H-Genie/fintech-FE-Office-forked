@@ -1,18 +1,22 @@
-import { Link } from 'react-router-dom';
+import SideBar from '@components/template/SideBar';
+// import { Link } from 'react-router-dom';
 
 const MainPage = () => {
   return (
-    <nav>
-      <li>
-        <Link to='/login'>로그인</Link>
-      </li>
-      <li>
-        <Link to='/transactions'>거래 내역</Link>
-      </li>
-      <li>
-        <Link to='/api-keys'>키 관리</Link>
-      </li>
-    </nav>
+    <>
+      <SideBar />
+      {/* <nav>
+        <li>
+          <Link to='/login'>로그인</Link>
+        </li>
+        <li>
+          <Link to='/transactions'>거래 내역</Link>
+        </li>
+        <li>
+          <Link to='/api-keys'>키 관리</Link>
+        </li>
+      </nav> */}
+    </>
   );
 };
 
