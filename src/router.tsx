@@ -1,3 +1,4 @@
+import Layout from '@components/template/Layout';
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -19,20 +20,25 @@ const ApiKeysPage = lazy(() =>
 const routes = [
   {
     path: '/',
-    element: <MainPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/transactions',
-    element: <TransactionsPage />,
-  },
-  {
-    path: '/api-keys',
-    element: <ApiKeysPage />,
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <MainPage />,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/transactions',
+        element: <TransactionsPage />,
+      },
+      {
+        path: '/api-keys',
+        element: <ApiKeysPage />,
+      },
+    ],
   },
 ];
-
 export const router = createBrowserRouter(routes);
