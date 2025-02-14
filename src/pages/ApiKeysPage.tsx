@@ -1,7 +1,5 @@
-import ContentSection from '@components/template/ContentSection';
-
 const ApiKeysPage = () => {
-  return <ContentSection>ApiKeysPage</ContentSection>;
+  return <div>ApiKeysPage</div>;
 };
 
 export default ApiKeysPage;

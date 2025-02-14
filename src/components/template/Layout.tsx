@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <main className='flex'>
       <SideBar />
-      <article className='w-[calc(100%-240px)]'>
+      <article className='w-[calc(100%-240px)] flex items-center justify-center'>
         <Outlet />
       </article>
     </main>

@@ -1,7 +1,5 @@
-import ContentSection from '@components/template/ContentSection';
-
 const MainPage = () => {
-  return <ContentSection>MainPage</ContentSection>;
+  return <div>MainPage</div>;
 };
 
 export default MainPage;
