@@ -10,6 +10,7 @@ import {
 } from '@components/ui/table';
 import type { Transaction } from '@type/transaction';
 import { transactionHeaders } from '@constants/transaction';
+import { convertCurrencyFormat, convertDateFormat } from '@lib/fommater';
 
 const TransactionsPage = () => {
   const { data, isLoading } = useTransactions();
@@ -32,11 +33,13 @@ const TransactionsPage = () => {
           {data?.data.transactions.map((transaction: Transaction) => (
             <TableRow key={transaction.id}>
               <TableCell>{transaction.id}</TableCell>
-              <TableCell>{transaction.createdAt}</TableCell>
+              <TableCell>{convertDateFormat(transaction.createdAt)}</TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
-              <TableCell className='text-right'>{transaction.amount}</TableCell>
+              <TableCell className='text-right'>
+                {convertCurrencyFormat(transaction.amount)}
+              </TableCell>
               <TableCell>{transaction.reason}</TableCell>
             </TableRow>
           ))}
