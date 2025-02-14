@@ -4,4 +4,5 @@ export type SideBarItemProps = {
   icon: keyof typeof LucideIcons;
   name: string;
   link: string;
+  isActive: boolean;
 };
