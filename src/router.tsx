@@ -19,16 +19,16 @@ const ApiKeysPage = lazy(() =>
 
 const routes = [
   {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
     path: '/',
     element: <Layout />,
     children: [
       {
         path: '/',
         element: <MainPage />,
-      },
-      {
-        path: '/login',
-        element: <LoginPage />,
       },
       {
         path: '/transactions',

@@ -1,5 +1,7 @@
+import { Navigate } from 'react-router-dom';
+
 const MainPage = () => {
-  return <div>MainPage</div>;
+  return <Navigate to='/transactions' replace />;
 };
 
 export default MainPage;
