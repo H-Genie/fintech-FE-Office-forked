@@ -1,5 +1,7 @@
 # PAY200 - Office
 
+[사이트 미리보기](https://fintech-fe-office-forked.vercel.app/)
+
 ### 목차
 
 ```markdown
@@ -14,7 +16,7 @@
 ```markdown
 - 프레임워크: React, Vite
 - 언어: TypeScript, JavaScript
-- 스타일링: tailwindCSS
+- 스타일링: tailwindCSS, shadcn
 - 빌드 도구: Yarn
 - 테스팅: Vitest
 ```
