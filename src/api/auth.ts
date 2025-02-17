@@ -1,4 +1,4 @@
-import { api } from '@lib/apiClient';
+import { api } from '@lib/api/apiClient';
 import type { LoginReq, SignupReq } from '@type/auth';
 import { API_ENDPOINTS } from '@constants/apiEndpoints';
 

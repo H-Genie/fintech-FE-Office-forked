@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { apiClient } from '@lib/apiClient';
+import { apiClient } from '@lib/api/apiClient';
 import { API_ENDPOINTS } from '@constants/apiEndpoints';
 import type { TransactionResponse } from '@type/transaction';
 
