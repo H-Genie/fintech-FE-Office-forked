@@ -8,3 +8,9 @@ export type SignupReq = {
   password: string;
   name: string;
 };
+
+export type AuthLayoutProps = {
+  children: React.ReactNode;
+  linkText: string;
+  linkTo: string;
+};

@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-
-interface AuthLayoutProps {
-  children: React.ReactNode;
-  linkText: string;
-  linkTo: string;
-}
+import type { AuthLayoutProps } from '@type/auth';
 
 const AuthLayout = ({ children, linkText, linkTo }: AuthLayoutProps) => {
   return (
