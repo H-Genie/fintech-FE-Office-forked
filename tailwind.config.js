@@ -5,13 +5,14 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
   theme: {
     extend: {
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
       colors: {
         primary: '#18A0FB',
+        hover: '#1E2087E6',
+        light: {
+          DEFAULT: '#212121',
+          40: '#21212166',
+          border: '#2121211A',
+        },
         secondary: colors.slate[950],
         destructive: colors.red[600],
         muted: {
@@ -20,18 +21,10 @@ export default {
         },
       },
       backgroundImage: {
-        'gradient-10':
-          'linear-gradient(0deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1))',
-        'gradient-30':
-          'linear-gradient(0deg, rgba(255,255,255,0.3), rgba(255,255,255,0.3))',
-        'gradient-50':
-          'linear-gradient(0deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5))',
+        gradient: 'linear-gradient(135deg, #89CFF0, #007BFF)',
       },
       fontFamily: {
         sans: ['Pretendard', 'Arial', 'sans-serif'],
-      },
-      width: {
-        responsive_container: 'min(100%, 600px)',
       },
     },
   },
