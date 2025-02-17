@@ -5,6 +5,7 @@ import { useLogin } from '@hooks/useAuth';
 import { z } from 'zod';
 import { formatZodErrors } from '@lib/zod';
 import type { ZodFormErrors } from '@type/zod';
+import { useToast } from '@hooks/useToast';
 
 const loginSchema = z.object({
   username: z.string().min(4, '아이디는 4글자 이상이어야 합니다'),
@@ -12,7 +13,9 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
+  const { toast } = useToast();
   const { mutate: login } = useLogin();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<ZodFormErrors>({});
@@ -24,6 +27,7 @@ const LoginPage = () => {
 
       const credentials = { username, password };
       login(credentials);
+      // TODO: zustand로 인증 상태관리
       // TODO: 메인페이지로 리다이렉트
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -31,7 +35,11 @@ const LoginPage = () => {
         setErrors(formattedErrors);
       } else {
         console.error('로그인 실패:', error);
-        // TODO: 에러 메시지 표시 (예: 토스트 메시지)
+        toast({
+          title: '로그인 실패',
+          description: '로그인 중 오류가 발생했습니다. 다시 시도해주세요.',
+          variant: 'destructive',
+        });
       }
     }
   };
