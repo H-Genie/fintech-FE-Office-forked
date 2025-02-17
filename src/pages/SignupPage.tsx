@@ -12,7 +12,7 @@ const SignupPage = () => {
   const { mutate: signup } = useSignup();
 
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
     passwordConfirm: '',
     name: '',
@@ -33,13 +33,11 @@ const SignupPage = () => {
       setErrors({});
 
       const credentials = {
-        username: formData.username,
+        email: formData.email,
         password: formData.password,
         name: formData.name,
       };
       signup(credentials);
-      // TODO: 사용중인 아이디일때 메세지 toast로 보여주면 좋겠음
-      // TODO: 로그인 페이지로 리다이렉트 (useSignup 훅에서 처리)
     } catch (error) {
       if (error instanceof ZodError) {
         const formattedErrors = formatZodErrors(error);
@@ -51,15 +49,15 @@ const SignupPage = () => {
   return (
     <AuthLayout linkText='이미 계정이 있으신가요?' linkTo='/login'>
       <div>
-        <label className='text-sm mb-2 block'>아이디</label>
+        <label className='text-sm mb-2 block'>이메일</label>
         <Input
-          name='username'
+          name='email'
           className='h-12 rounded-xl'
-          value={formData.username}
+          value={formData.email}
           onChange={handleChange}
         />
-        {errors.username && (
-          <p className='text-red-500 text-sm mt-1'>{errors.username}</p>
+        {errors.email && (
+          <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
         )}
       </div>
 

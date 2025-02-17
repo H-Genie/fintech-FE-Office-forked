@@ -3,8 +3,19 @@ export type LoginReq = {
   password: string;
 };
 
+export type Auth = {
+  id: string;
+  token: string;
+  name: string;
+};
+
+export type LoginRes = {
+  ok: boolean;
+  data: Auth;
+};
+
 export type SignupReq = {
-  username: string;
+  email: string;
   password: string;
   name: string;
 };
