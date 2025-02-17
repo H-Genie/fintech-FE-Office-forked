@@ -4,7 +4,7 @@ export type LoginReq = {
 };
 
 export type SignupReq = {
-  id: string;
+  username: string;
   password: string;
   name: string;
 };

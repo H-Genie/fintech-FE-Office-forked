@@ -15,6 +15,7 @@ export default defineConfig({
       '@mocks': path.resolve(__dirname, './src/mocks'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@type': path.resolve(__dirname, './src/types'),
+      '@schema': path.resolve(__dirname, './src/schema'),
     },
   },
 

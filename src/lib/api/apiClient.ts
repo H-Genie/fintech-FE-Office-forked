@@ -35,13 +35,22 @@ export const apiClient = {
         headers,
       })
       .json<TRes>()
-      .catch(handleError),
+      .catch(async (error) => {
+        const handledError = await handleError(error);
+        throw handledError;
+      }),
 
   get: <TRes = unknown>(
     endpoint: string,
     headers?: Record<string, string>,
   ): Promise<TRes> =>
-    instance.get(endpoint, { headers }).json<TRes>().catch(handleError),
+    instance
+      .get(endpoint, { headers })
+      .json<TRes>()
+      .catch(async (error) => {
+        const handledError = await handleError(error);
+        throw handledError;
+      }),
 
   put: <TReq = unknown, TRes = unknown>(
     endpoint: string,
@@ -54,11 +63,20 @@ export const apiClient = {
         headers,
       })
       .json<TRes>()
-      .catch(handleError),
+      .catch(async (error) => {
+        const handledError = await handleError(error);
+        throw handledError;
+      }),
 
   delete: <TRes = unknown>(
     endpoint: string,
     headers?: Record<string, string>,
   ): Promise<TRes> =>
-    instance.delete(endpoint, { headers }).json<TRes>().catch(handleError),
+    instance
+      .delete(endpoint, { headers })
+      .json<TRes>()
+      .catch(async (error) => {
+        const handledError = await handleError(error);
+        throw handledError;
+      }),
 };
