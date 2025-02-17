@@ -1,10 +1,5 @@
 import { create } from 'zustand';
-import type { Auth } from '@type/auth'; // 필요한 타입 import
-
-interface AuthState {
-  auth: Auth | null;
-  setAuth: (auth: Auth) => void;
-}
+import type { AuthState } from '@type/zustand';
 
 export const useAuthStore = create<AuthState>((set) => ({
   auth: null,

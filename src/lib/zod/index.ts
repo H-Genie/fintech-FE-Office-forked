@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import { ZodError } from 'zod';
 
-export const formatZodErrors = (error: z.ZodError) => {
+export const formatZodErrors = (error: ZodError) => {
   return error.errors.reduce(
     (acc, curr) => {
       const field = curr.path[0] as string;
