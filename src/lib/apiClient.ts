@@ -6,12 +6,14 @@ const instance = ky.create({
   credentials: 'include',
   headers: {
     'Content-Type': 'application/json',
-    'Custom-Header': 'value',
   },
   hooks: {
     beforeRequest: [
       (request) => {
-        request.headers.set('Dynamic-Header', 'dynamic-value');
+        const authHeader = request.headers.get('Authorization');
+        if (authHeader && !authHeader.startsWith('Bearer ')) {
+          request.headers.set('Authorization', `Bearer ${authHeader}`);
+        }
       },
     ],
   },
