@@ -11,16 +11,16 @@ import AuthLayout from '@components/template/auth/AuthLayout';
 const LoginPage = () => {
   const { mutate: login } = useLogin();
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<ZodFormErrors>({});
 
   const handleLogin = () => {
     try {
-      loginSchema.parse({ username, password });
+      loginSchema.parse({ email, password });
       setErrors({});
 
-      const credentials = { username, password };
+      const credentials = { email, password };
       login(credentials);
       // TODO: zustand로 인증 상태관리 (useLogin 훅에서 처리)
       // TODO: 메인페이지로 리다이렉트 (useLogin 훅에서 처리)
@@ -35,14 +35,14 @@ const LoginPage = () => {
   return (
     <AuthLayout linkText='아직 계정이 없으신가요?' linkTo='/signup'>
       <div>
-        <label className='text-sm mb-1.5 block'>아이디</label>
+        <label className='text-sm mb-1.5 block'>이메일</label>
         <Input
           className='h-12 rounded-xl'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.username && (
-          <p className='text-red-500 text-sm mt-1'>{errors.username}</p>
+        {errors.email && (
+          <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
         )}
       </div>
       <div>

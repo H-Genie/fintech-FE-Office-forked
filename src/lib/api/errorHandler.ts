@@ -25,6 +25,7 @@ export const handleError = async (error: unknown) => {
     let data;
     try {
       data = await error.response.json();
+      console.log('API Error Response:', data);
     } catch {
       data = null;
     }
@@ -32,7 +33,9 @@ export const handleError = async (error: unknown) => {
     throw new ApiError(
       status,
       data,
-      statusMessages[status] || '알 수 없는 에러가 발생했습니다.',
+      data?.message ||
+        statusMessages[status] ||
+        '알 수 없는 에러가 발생했습니다.',
     );
   }
   throw error;
