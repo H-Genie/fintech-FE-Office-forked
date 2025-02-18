@@ -32,6 +32,12 @@ const LoginPage = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
     <AuthLayout linkText='아직 계정이 없으신가요?' linkTo='/signup'>
       <div>
@@ -40,6 +46,7 @@ const LoginPage = () => {
           className='h-12 rounded-xl'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         {errors.email && (
           <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
@@ -52,6 +59,7 @@ const LoginPage = () => {
           className='h-12 rounded-xl'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         {errors.password && (
           <p className='text-red-500 text-sm mt-1'>{errors.password}</p>

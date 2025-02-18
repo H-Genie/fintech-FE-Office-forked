@@ -21,7 +21,7 @@ const Issued = () => {
       </h1>
 
       <p
-        className='mb-4 text-primary cursor-pointer hover:underline'
+        className='mb-4 text-xs text-primary cursor-pointer hover:underline'
         onClick={handleCopy}
       >
         복사하기
