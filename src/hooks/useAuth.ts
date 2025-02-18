@@ -3,20 +3,24 @@ import { apiClient } from '@lib/api/apiClient';
 import { API_ENDPOINTS } from '@constants/apiEndpoints';
 import type { LoginReq, LoginRes, SignupReq } from '@type/auth';
 import { createToastSuccess, createToastError } from '@lib/toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '@store/authStore';
 
 export const useLogin = () => {
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
+  const location = useLocation();
 
   return useMutation({
     mutationFn: (data: LoginReq) =>
       apiClient.post<LoginReq, LoginRes>(API_ENDPOINTS.LOGIN, data),
     onSuccess: (response: LoginRes) => {
       setAuth(response.data);
-      createToastSuccess('로그인 성공', '메인 페이지로 이동합니다');
-      navigate('/');
+      sessionStorage.setItem('auth', JSON.stringify(response.data));
+      createToastSuccess('', '로그인되었습니다');
+
+      const from = location.state?.from?.pathname || '/';
+      navigate(from);
     },
     onError: createToastError('로그인 실패'),
   });

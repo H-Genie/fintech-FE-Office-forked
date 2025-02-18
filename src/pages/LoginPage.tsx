@@ -22,8 +22,6 @@ const LoginPage = () => {
 
       const credentials = { email, password };
       login(credentials);
-      // TODO: zustand로 인증 상태관리 (useLogin 훅에서 처리)
-      // TODO: 메인페이지로 리다이렉트 (useLogin 훅에서 처리)
     } catch (error) {
       if (error instanceof ZodError) {
         const formattedErrors = formatZodErrors(error);
