@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -14,12 +15,20 @@ export default defineConfig({
       '@mocks': path.resolve(__dirname, './src/mocks'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@type': path.resolve(__dirname, './src/types'),
+      '@schema': path.resolve(__dirname, './src/schema'),
+      '@store': path.resolve(__dirname, './src/store'),
     },
   },
 
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(
-      process.env.NODE_ENV || 'development',
-    ),
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://backoffice.pay-200.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false,
+        ws: true,
+      },
+    },
   },
 });

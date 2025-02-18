@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { API_ENDPOINTS } from '@constants/apiEndpoints';
-import { MOCK_PAYMENT, MOCK_TRANSACTIONS } from '../data/transactions';
+import { MOCK_PAYMENT, MOCK_TRANSACTIONS } from '@mocks/data/transactions';
 
 export const transactionHandler = [
   http.get(API_ENDPOINTS.PAYMENTS.PAYMENTS('payment-key'), () => {

@@ -16,11 +16,18 @@ const TransactionsPage = lazy(() =>
 const ApiKeysPage = lazy(() =>
   import('@pages/ApiKeysPage').then((module) => ({ default: module.default })),
 );
+const SignupPage = lazy(() =>
+  import('@pages/SignupPage').then((module) => ({ default: module.default })),
+);
 
 const routes = [
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/signup',
+    element: <SignupPage />,
   },
   {
     path: '/',
