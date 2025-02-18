@@ -5,7 +5,7 @@ import { ZodError } from 'zod';
 import { formatZodErrors } from '@lib/zod';
 import type { ZodFormErrors } from '@type/zod';
 import { signupSchema } from '@schema/auth';
-import { useSignup } from '@hooks/useAuth';
+import { useSignup } from '@hooks/api/useAuth';
 import AuthLayout from '@components/template/auth/AuthLayout';
 
 const SignupPage = () => {

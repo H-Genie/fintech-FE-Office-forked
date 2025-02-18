@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
-import { useLogin } from '@hooks/useAuth';
+import { useLogin } from '@hooks/api/useAuth';
 import { ZodError } from 'zod';
 import { formatZodErrors } from '@lib/zod';
 import type { ZodFormErrors } from '@type/zod';
