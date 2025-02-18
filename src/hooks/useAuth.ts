@@ -15,8 +15,8 @@ export const useLogin = () => {
     mutationFn: (data: LoginReq) =>
       apiClient.post<LoginReq, LoginRes>(API_ENDPOINTS.LOGIN, data),
     onSuccess: (response: LoginRes) => {
-      setAuth(response.data);
       sessionStorage.setItem('auth', JSON.stringify(response.data));
+      setAuth(response.data);
       createToastSuccess('', '로그인되었습니다');
 
       const from = location.state?.from?.pathname || '/';

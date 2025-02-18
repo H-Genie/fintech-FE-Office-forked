@@ -7,6 +7,15 @@ const getStoredAuth = () => {
 };
 
 export const useAuthStore = create<AuthState>((set) => ({
-  auth: getStoredAuth(),
+  auth: null,
   setAuth: (auth) => set({ auth }),
 }));
+
+const initializeAuth = () => {
+  const auth = getStoredAuth();
+  if (auth) {
+    useAuthStore.getState().setAuth(auth);
+  }
+};
+
+initializeAuth();
