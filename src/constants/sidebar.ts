@@ -1,5 +1,6 @@
 import * as LucideIcons from 'lucide-react';
 import { ROUTES } from '@constants/routes';
+
 export const sideBarItems: {
   name: string;
   icon: keyof typeof LucideIcons;
