@@ -1,5 +1,5 @@
-import Issued from '@components/template/ApiKeys/Issued';
-import NotIssued from '@components/template/ApiKeys/NotIssued';
+import Issued from '@components/template/Key/Issued';
+import NotIssued from '@components/template/Key/NotIssued';
 
 const KEY_ISSUED = true;
 
