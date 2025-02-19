@@ -1,5 +1,5 @@
 import { Button } from '@components/ui/button';
-import ApiKeyInfo from './ApiKeyInfo';
+import Info from './Info';
 import Separator from './Separator';
 import { createToastSuccess } from '@lib/toast';
 import { useKey } from '@hooks/api/useKey';
@@ -48,7 +48,7 @@ const Issued = () => {
 
       <Separator />
 
-      <ApiKeyInfo />
+      <Info />
 
       <Separator />
 

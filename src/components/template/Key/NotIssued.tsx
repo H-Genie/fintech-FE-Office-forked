@@ -1,5 +1,5 @@
 import { Button } from '@components/ui/button';
-import ApiKeyInfo from './ApiKeyInfo';
+import Info from './Info';
 
 const NotIssued = () => {
   return (
@@ -8,7 +8,7 @@ const NotIssued = () => {
         키 발급하기
       </h1>
 
-      <ApiKeyInfo />
+      <Info />
 
       <Button size={'rounded'}>발급하기</Button>
     </div>
