@@ -2,7 +2,7 @@ import Layout from '@components/template/Layout';
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { ProtectedRoute } from '@components/template/auth/ProtectedRoute';
-
+import { ROUTES } from '@constants/routes';
 const MainPage = lazy(() =>
   import('@pages/MainPage').then((module) => ({ default: module.default })),
 );
@@ -23,19 +23,19 @@ const SignupPage = lazy(() =>
 
 const routes = [
   {
-    path: '/login',
+    path: ROUTES.LOGIN,
     element: <LoginPage />,
   },
   {
-    path: '/signup',
+    path: ROUTES.SIGNUP,
     element: <SignupPage />,
   },
   {
-    path: '/',
+    path: ROUTES.MAIN,
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: ROUTES.MAIN,
         element: (
           <ProtectedRoute>
             <MainPage />
@@ -43,7 +43,7 @@ const routes = [
         ),
       },
       {
-        path: '/transactions',
+        path: ROUTES.TRANSACTIONS,
         element: (
           <ProtectedRoute>
             <TransactionsPage />
@@ -51,7 +51,7 @@ const routes = [
         ),
       },
       {
-        path: '/api-keys',
+        path: ROUTES.KEY_MANAGEMENT,
         element: (
           <ProtectedRoute>
             <ApiKeysPage />

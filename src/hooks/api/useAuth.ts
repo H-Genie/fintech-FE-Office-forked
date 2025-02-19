@@ -5,6 +5,7 @@ import type { LoginReq, LoginRes, SignupReq } from '@type/auth';
 import { createToastSuccess, createToastError } from '@lib/toast';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '@store/authStore';
+import { ROUTES } from '@constants/routes';
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export const useSignup = () => {
     mutationFn: (data: SignupReq) => apiClient.post(API_ENDPOINTS.SIGNUP, data),
     onSuccess: () => {
       createToastSuccess('회원가입 성공', '로그인 페이지로 이동합니다');
-      navigate('/login');
+      navigate(ROUTES.LOGIN);
     },
     onError: createToastError('회원가입 실패'),
   });
