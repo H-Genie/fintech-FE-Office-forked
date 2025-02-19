@@ -2,13 +2,32 @@ import { Button } from '@components/ui/button';
 import ApiKeyInfo from './ApiKeyInfo';
 import Separator from './Separator';
 import { createToastSuccess } from '@lib/toast';
+import { useKey } from '@hooks/api/useKey';
+import { useAuthStore } from '@store/authStore';
+import { useState } from 'react';
 
 const Issued = () => {
+  const [apiKey, setApiKey] = useState<string>('20241231-1234567890');
+  const { mutate: renewKey } = useKey();
+  const { auth } = useAuthStore();
+
   const handleCopy = () => {
     const apiKey = document.getElementById('api-key')!.textContent!;
     navigator.clipboard.writeText(apiKey).then(() => {
       createToastSuccess('', 'API 키를 복사하였습니다.');
     });
+  };
+
+  const handleRenew = () => {
+    renewKey(
+      { id: auth!.id },
+      {
+        onSuccess: ({ data }) => {
+          setApiKey(data.key);
+          createToastSuccess('', 'API 키가 성공적으로 갱신되었습니다.');
+        },
+      },
+    );
   };
 
   return (
@@ -17,7 +36,7 @@ const Issued = () => {
         className='text-2xl font-bold text-primary text-center mb-4'
         id='api-key'
       >
-        20241231-1234567890
+        {apiKey}
       </h1>
 
       <p
@@ -33,7 +52,9 @@ const Issued = () => {
 
       <Separator />
 
-      <Button size={'rounded'}>갱신하기</Button>
+      <Button size={'rounded'} onClick={handleRenew}>
+        갱신하기
+      </Button>
     </div>
   );
 };
