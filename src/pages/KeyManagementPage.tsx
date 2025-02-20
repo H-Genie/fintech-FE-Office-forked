@@ -1,17 +1,34 @@
+import Error from '@components/template/Error';
 import Issued from '@components/template/Key/Issued';
 import NotIssued from '@components/template/Key/NotIssued';
 import Loader from '@components/template/Loader';
 import { useKeysId } from '@hooks/api/useKeys';
 import { useAuthStore } from '@store/authStore';
+import { useState, useEffect } from 'react';
 
 const ApiKeysPage = () => {
   const { auth } = useAuthStore();
-  const { data, isLoading } = useKeysId(auth!.id);
+  const { data, isLoading, isError } = useKeysId(auth!.id);
+  const [issuedApiKey, setIssuedApiKey] = useState<null | undefined | string>(
+    null,
+  );
+
+  useEffect(() => {
+    const apiKey = data?.data.apiKey;
+    if (apiKey) setIssuedApiKey(apiKey);
+  }, [data]);
 
   if (isLoading) return <Loader />;
-  else {
-    return data ? <Issued issuedApiKey={data.data.apiKey} /> : <NotIssued />;
-  }
+  else if (isError) return <Error />;
+  return issuedApiKey ? (
+    <Issued issuedApiKey={issuedApiKey} />
+  ) : (
+    <NotIssued
+      onIssueSuccess={(newApiKey: string) => {
+        setIssuedApiKey(newApiKey);
+      }}
+    />
+  );
 };
 
 export default ApiKeysPage;

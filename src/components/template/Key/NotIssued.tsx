@@ -1,11 +1,28 @@
 import { Button } from '@components/ui/button';
 import Info from './Info';
+import { useAuthStore } from '@store/authStore';
+import { useKeys } from '@hooks/api/useKeys';
+import { createToastSuccess } from '@lib/toast';
 
-const NotIssued = () => {
-  // const handleIssue = () => {
-  //   // TODO: 키 발급 API 호출
-  //   // TODO: 성공 후 Issued 컴포넌트로 이동 => 컴포넌트 렌더를 결정하는 변수가 상위 컴포넌트에 있음
-  // };
+const NotIssued = ({
+  onIssueSuccess,
+}: {
+  onIssueSuccess: (value: string) => void;
+}) => {
+  const { auth } = useAuthStore();
+  const { mutate: renewKey } = useKeys();
+
+  const handleIssue = () => {
+    renewKey(
+      { id: auth!.id },
+      {
+        onSuccess: ({ data }) => {
+          createToastSuccess('', 'API 키가 성공적으로 발급되었습니다.');
+          onIssueSuccess(data.apiKey);
+        },
+      },
+    );
+  };
 
   return (
     <div className='bg-white rounded-3xl shadow-lg p-24 flex flex-col items-center'>
@@ -15,7 +32,9 @@ const NotIssued = () => {
 
       <Info />
 
-      <Button size={'rounded'}>발급하기</Button>
+      <Button size={'rounded'} onClick={handleIssue}>
+        발급하기
+      </Button>
     </div>
   );
 };
