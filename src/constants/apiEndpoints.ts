@@ -13,5 +13,8 @@ export const API_ENDPOINTS = {
     PAYMENTS: getPaymentsEndpoint,
     TRANSACTIONS: getTransactionEndpoint,
   },
-  KEY: `${BASE_URL}/keys`,
+  MANAGEMENT: {
+    KEYS: `${BASE_URL}/keys`,
+    ID: (id: string) => `${BASE_URL}/keys/${id}`,
+  },
 } as const;

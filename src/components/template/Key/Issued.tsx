@@ -2,13 +2,13 @@ import { Button } from '@components/ui/button';
 import Info from './Info';
 import Separator from './Separator';
 import { createToastSuccess } from '@lib/toast';
-import { useKey } from '@hooks/api/useKey';
+import { useKeys } from '@hooks/api/useKeys';
 import { useAuthStore } from '@store/authStore';
 import { useState } from 'react';
 
-const Issued = () => {
-  const [apiKey, setApiKey] = useState<string>('20241231-1234567890');
-  const { mutate: renewKey } = useKey();
+const Issued = ({ issuedApiKey }: { issuedApiKey: string }) => {
+  const [apiKey, setApiKey] = useState<string>(issuedApiKey);
+  const { mutate: renewKey } = useKeys();
   const { auth } = useAuthStore();
 
   const handleCopy = () => {
