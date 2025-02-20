@@ -9,6 +9,11 @@ const getStoredAuth = () => {
 export const useAuthStore = create<AuthState>((set) => ({
   auth: null,
   setAuth: (auth) => set({ auth }),
+  logout: () => {
+    sessionStorage.removeItem('auth');
+    set({ auth: null });
+    window.location.href = '/login';
+  },
 }));
 
 const initializeAuth = () => {
