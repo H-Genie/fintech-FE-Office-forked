@@ -32,7 +32,9 @@
       "@lib/*": ["./src/lib/*"],
       "@mocks/*": ["./src/mocks/*"],
       "@pages/*": ["./src/pages/*"],
-      "@type/*": ["./src/types/*"]
+      "@type/*": ["./src/types/*"],
+      "@schema/*": ["./src/schema/*"],
+      "@store/*": ["./src/store/*"]
     },
     "types": ["vite/client"]
   },

@@ -1,51 +1,66 @@
+import { useState } from 'react';
 import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
 import { useLogin } from '@hooks/useAuth';
+import { ZodError } from 'zod';
+import { formatZodErrors } from '@lib/zod';
+import type { ZodFormErrors } from '@type/zod';
+import { loginSchema } from '@schema/auth';
+import AuthLayout from '@components/template/auth/AuthLayout';
 
 const LoginPage = () => {
   const { mutate: login } = useLogin();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<ZodFormErrors>({});
+
   const handleLogin = () => {
-    const credentials = { id: 'user-123', password: '1234' };
     try {
+      loginSchema.parse({ email, password });
+      setErrors({});
+
+      const credentials = { email, password };
       login(credentials);
-      // TODO: 토큰 보관
-      // TODO: 메인페이지로 리다이렉트
+      // TODO: zustand로 인증 상태관리 (useLogin 훅에서 처리)
+      // TODO: 메인페이지로 리다이렉트 (useLogin 훅에서 처리)
     } catch (error) {
-      console.error('로그인 실패:', error);
+      if (error instanceof ZodError) {
+        const formattedErrors = formatZodErrors(error);
+        setErrors(formattedErrors);
+      }
     }
   };
 
-  // TODO: 유효성 검사
   return (
-    <div
-      className='min-h-screen bg-[#EEF1FF] flex items-center justify-center p-4'
-      style={{ background: 'linear-gradient(135deg, #89CFF0, #007BFF)' }}
-    >
-      <div className='w-[720px] bg-white rounded-3xl px-16 py-24 flex'>
-        <div className='w-[40%] mr-12 flex flex-col items-center justify-center first-line:pr-6'>
-          <img src='/logo.png' className='w-24 h-24 mb-4' />
-          <h1 className='text-3xl font-bold'>PAY 200</h1>
-          <p className='text-xl mt-2'>관리자 페이지</p>
-        </div>
-
-        <div className='w-[60%] flex pl-6'>
-          <div className='w-full space-y-4'>
-            <div>
-              <label className='text-sm mb-1.5 block'>ID</label>
-              <Input className='h-12 rounded-xl' />
-            </div>
-            <div>
-              <label className='text-sm mb-1.5 block'>Password</label>
-              <Input type='password' className='h-12 rounded-xl' />
-            </div>
-            <Button onClick={handleLogin} className='w-full h-12'>
-              로그인
-            </Button>
-          </div>
-        </div>
+    <AuthLayout linkText='아직 계정이 없으신가요?' linkTo='/signup'>
+      <div>
+        <label className='text-sm mb-1.5 block'>이메일</label>
+        <Input
+          className='h-12 rounded-xl'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {errors.email && (
+          <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
+        )}
       </div>
-    </div>
+      <div>
+        <label className='text-sm mb-1.5 block'>비밀번호</label>
+        <Input
+          type='password'
+          className='h-12 rounded-xl'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {errors.password && (
+          <p className='text-red-500 text-sm mt-1'>{errors.password}</p>
+        )}
+      </div>
+      <Button onClick={handleLogin} className='w-full h-12'>
+        로그인
+      </Button>
+    </AuthLayout>
   );
 };
 
