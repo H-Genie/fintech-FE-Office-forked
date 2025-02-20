@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { AuthState } from '@type/zustand';
+import type { NavigateFunction } from 'react-router-dom';
 
 const getStoredAuth = () => {
   const storedAuth = sessionStorage.getItem('auth');
@@ -9,10 +10,13 @@ const getStoredAuth = () => {
 export const useAuthStore = create<AuthState>((set) => ({
   auth: null,
   setAuth: (auth) => set({ auth }),
+  navigate: null as NavigateFunction | null,
   logout: () => {
     sessionStorage.removeItem('auth');
     set({ auth: null });
-    window.location.href = '/login';
+
+    const state = useAuthStore.getState();
+    if (state.navigate) state.navigate('/login');
   },
 }));
 
