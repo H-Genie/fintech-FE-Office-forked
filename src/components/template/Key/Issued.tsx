@@ -23,7 +23,7 @@ const Issued = () => {
       { id: auth!.id },
       {
         onSuccess: ({ data }) => {
-          setApiKey(data.key);
+          setApiKey(data.apiKey);
           createToastSuccess('', 'API 키가 성공적으로 갱신되었습니다.');
         },
       },

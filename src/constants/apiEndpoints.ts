@@ -13,5 +13,5 @@ export const API_ENDPOINTS = {
     PAYMENTS: getPaymentsEndpoint,
     TRANSACTIONS: getTransactionEndpoint,
   },
-  KEY: `${BASE_URL}/key`,
+  KEY: `${BASE_URL}/keys`,
 } as const;

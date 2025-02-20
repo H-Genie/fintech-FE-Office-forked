@@ -5,6 +5,6 @@ export type KeyReq = {
 export type KeyRes = {
   ok: boolean;
   data: {
-    key: string;
+    apiKey: string;
   };
 };
