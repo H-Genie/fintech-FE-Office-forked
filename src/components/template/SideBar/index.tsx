@@ -2,6 +2,7 @@ import { sideBarItems } from '@constants/sidebar.ts';
 import SideBarItem from './SideBarItem.tsx';
 import { useLocation } from 'react-router-dom';
 import { useAuthStore } from '@store/authStore';
+import IconComponnt from '../IconComponnt.tsx';
 const SideBar = () => {
   const { pathname } = useLocation();
   const { auth, logout } = useAuthStore();
@@ -25,9 +26,13 @@ const SideBar = () => {
             />
           ))}
         </ul>
-        <ul className='mt-auto'>
-          <li className='cursor-pointer text-center' onClick={() => logout()}>
-            로그아웃
+        <ul className='mt-auto px-4'>
+          <li
+            className='cursor-pointer text-center flex gap-2'
+            onClick={() => logout()}
+          >
+            <IconComponnt icon='LogOut' />
+            <p>로그아웃</p>
           </li>
         </ul>
       </nav>
