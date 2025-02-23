@@ -1,4 +1,5 @@
-const BASE_URL = 'api/backoffice/v1';
+const PROXY_URL = process.env.NODE_ENV === 'development' ? '/proxy' : '';
+const BASE_URL = `${PROXY_URL}/api/backoffice/v1`;
 
 const getPaymentsEndpoint = (paymentKey: string) =>
   `${BASE_URL}/payments/${paymentKey}`;
