@@ -22,12 +22,10 @@ export default defineConfig({
 
   server: {
     proxy: {
-      '/api': {
+      '/proxy': {
         target: 'https://backoffice.pay-200.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        secure: false,
-        ws: true,
+        rewrite: (path) => path.replace(/^\/proxy/, ''),
       },
     },
   },

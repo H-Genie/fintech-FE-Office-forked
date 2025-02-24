@@ -1,4 +1,4 @@
-const BASE_URL = 'api/backoffice/v1';
+const BASE_URL = '/proxy/api/backoffice/v1';
 
 const getPaymentsEndpoint = (paymentKey: string) =>
   `${BASE_URL}/payments/${paymentKey}`;
@@ -13,5 +13,8 @@ export const API_ENDPOINTS = {
     PAYMENTS: getPaymentsEndpoint,
     TRANSACTIONS: getTransactionEndpoint,
   },
-  KEY: `${BASE_URL}/key`,
+  MANAGEMENT: {
+    KEYS: `${BASE_URL}/keys`,
+    ID: `${BASE_URL}/my-key`,
+  },
 } as const;
