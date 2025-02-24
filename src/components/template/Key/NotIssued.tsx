@@ -13,15 +13,13 @@ const NotIssued = ({
   const { mutate: renewKey } = useKeys();
 
   const handleIssue = () => {
-    renewKey(
-      { id: auth!.id },
-      {
-        onSuccess: ({ data }) => {
-          createToastSuccess('', 'API 키가 성공적으로 발급되었습니다.');
-          onIssueSuccess(data.apiKey);
-        },
+    if (!auth) return;
+    renewKey(auth.accessToken, {
+      onSuccess: ({ data }) => {
+        createToastSuccess('', 'API 키가 성공적으로 발급되었습니다.');
+        onIssueSuccess(data.apiKey);
       },
-    );
+    });
   };
 
   return (

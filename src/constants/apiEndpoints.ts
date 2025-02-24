@@ -16,6 +16,6 @@ export const API_ENDPOINTS = {
   },
   MANAGEMENT: {
     KEYS: `${BASE_URL}/keys`,
-    ID: (id: string) => `${BASE_URL}/keys/${id}`,
+    ID: `${BASE_URL}/my-key`,
   },
 } as const;

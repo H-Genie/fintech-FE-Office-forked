@@ -19,15 +19,12 @@ const Issued = ({ issuedApiKey }: { issuedApiKey: string }) => {
   };
 
   const handleRenew = () => {
-    renewKey(
-      { id: auth!.id },
-      {
-        onSuccess: ({ data }) => {
-          setApiKey(data.apiKey);
-          createToastSuccess('', 'API 키가 성공적으로 갱신되었습니다.');
-        },
+    renewKey(auth!.accessToken, {
+      onSuccess: ({ data }) => {
+        setApiKey(data.apiKey);
+        createToastSuccess('', 'API 키가 성공적으로 갱신되었습니다.');
       },
-    );
+    });
   };
 
   return (

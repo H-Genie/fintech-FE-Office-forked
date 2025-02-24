@@ -8,14 +8,14 @@ import { useState, useEffect } from 'react';
 
 const ApiKeysPage = () => {
   const { auth } = useAuthStore();
-  const { data, isLoading, isError } = useKeysId(auth!.id);
+  const { data, isLoading, isError } = useKeysId(auth!.accessToken);
   const [issuedApiKey, setIssuedApiKey] = useState<null | undefined | string>(
     null,
   );
 
   useEffect(() => {
-    const apiKey = data?.data.apiKey;
-    if (apiKey) setIssuedApiKey(apiKey);
+    const accessToken = data?.data.apiKey;
+    if (accessToken) setIssuedApiKey(accessToken);
   }, [data]);
 
   if (isLoading) return <Loader />;

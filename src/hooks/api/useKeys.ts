@@ -5,14 +5,25 @@ import type { KeyReq, KeyRes } from '@type/key';
 
 export const useKeys = () => {
   return useMutation({
-    mutationFn: (data: KeyReq) =>
-      apiClient.post<KeyReq, KeyRes>(API_ENDPOINTS.MANAGEMENT.KEYS, data),
+    mutationFn: (accessToken: string) => {
+      console.log(accessToken);
+      return apiClient.post<KeyReq, KeyRes>(
+        API_ENDPOINTS.MANAGEMENT.KEYS,
+        {},
+        {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      );
+    },
   });
 };
 
-export const useKeysId = (id: string) => {
+export const useKeysId = (accessToken: string) => {
   return useQuery({
     queryKey: ['get-key'],
-    queryFn: () => apiClient.get<KeyRes>(API_ENDPOINTS.MANAGEMENT.ID(id)),
+    queryFn: () =>
+      apiClient.get<KeyRes>(API_ENDPOINTS.MANAGEMENT.ID, {
+        Authorization: `Bearer ${accessToken}`,
+      }),
   });
 };
