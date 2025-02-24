@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
+import { API_URL } from '@constants/apiEndpoints';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -27,7 +28,7 @@ export default defineConfig(({ mode }) => {
       ? {
           proxy: {
             '/proxy': {
-              target: 'https://backoffice.pay-200.com',
+              target: API_URL,
               changeOrigin: true,
               rewrite: (path) => path.replace(/^\/proxy/, ''),
             },
